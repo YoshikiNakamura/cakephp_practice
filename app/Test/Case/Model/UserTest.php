@@ -1,6 +1,5 @@
 <?php
 App::uses('User', 'Model');
-
 /**
  * User Test Case
  */
