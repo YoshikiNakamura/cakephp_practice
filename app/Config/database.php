@@ -61,13 +61,19 @@
  */
 class DATABASE_CONFIG {
 
+	const HOST = $_SERVER['RDS_HOSTNAME'],
+	const LOGIN = $_SERVER['RDS_USERNAME'],
+	const PASSWORD = $_SERVER['RDS_PASSWORD'],
+	const DATABASE =  $_SERVER['RDS_DB_NAME'],
+
+
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => $_SERVER['RDS_HOSTNAME'],
-		'login' => $_SERVER['RDS_USERNAME'],
-		'password' => $_SERVER['RDS_PASSWORD'],
-		'database' => $_SERVER['RDS_DB_NAME'],
+		'host' => self::HOST,
+		'login' => self::LOGIN,
+		'password' => self::PASSWORD,
+		'database' => self::DATABASE,
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
@@ -75,10 +81,10 @@ class DATABASE_CONFIG {
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => $_SERVER['RDS_HOSTNAME'],
-		'login' => $_SERVER['RDS_USERNAME'],
-		'password' => $_SERVER['RDS_PASSWORD'],
-		'database' => $_SERVER['RDS_DB_NAME'],
+		'host' => self::HOST,
+		'login' => self::LOGIN,
+		'password' => self::PASSWORD,
+		'database' => self::DATABASE,
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
