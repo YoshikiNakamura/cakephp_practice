@@ -64,10 +64,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => 'aaj6sqsx63ft63.cwxfjytkazt3.ap-northeast-1.rds.amazonaws.com',
 		'login' => 'cogoo',
 		'password' => 'cogoocogoo',
-		'database' => 'cakephp-practice',
+		'database' => 'ebdb',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
@@ -75,10 +75,10 @@ class DATABASE_CONFIG {
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => 'aaj6sqsx63ft63.cwxfjytkazt3.ap-northeast-1.rds.amazonaws.com',
 		'login' => 'cogoo',
 		'password' => 'cogoocogoo',
-		'database' => 'cakephp-practice-test',
+		'database' => 'ebdb',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
