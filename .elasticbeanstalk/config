@@ -1,0 +1,5 @@
+[global]
+ApplicationName=cogoo
+DevToolsEndpoint=git.elasticbeanstalk.ap-northeast-1.amazonaws.com
+EnvironmentName=cakephp-phpunit-guzzle
+Region=ap-northeast-1
