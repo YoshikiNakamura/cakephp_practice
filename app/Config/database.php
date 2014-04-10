@@ -64,22 +64,33 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'aaj6sqsx63ft63.cwxfjytkazt3.ap-northeast-1.rds.amazonaws.com',
-		'login' => 'cogoo',
-		'password' => 'cogoocogoo',
-		'database' => 'ebdb',
+		'host' => $_SERVER['RDS_HOSTNAME'],
+		'login' => $_SERVER['RDS_USERNAME'],
+		'password' => $_SERVER['RDS_PASSWORD'],
+		'database' => $_SERVER['RDS_DB_NAME'],
 		'prefix' => '',
-		//'encoding' => 'utf8',
+		'encoding' => 'utf8',
 	);
 
 	public $test = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'aaj6sqsx63ft63.cwxfjytkazt3.ap-northeast-1.rds.amazonaws.com',
-		'login' => 'cogoo',
-		'password' => 'cogoocogoo',
-		'database' => 'ebdb',
+		'host' => $_SERVER['RDS_HOSTNAME'],
+		'login' => $_SERVER['RDS_USERNAME'],
+		'password' => $_SERVER['RDS_PASSWORD'],
+		'database' => $_SERVER['RDS_DB_NAME'],
 		'prefix' => '',
-		//'encoding' => 'utf8',
+		'encoding' => 'utf8',
 	);
+
+	public function __construct()
+	{
+		if ($_SERVER['HTTP_HOST'] === 'localhost')
+		{
+			$this->default['host'] = 'localhost';
+			$this->default['login'] = 'root';
+			$this->default['password'] = 'root';
+			$this->default['database'] = 'cakephp-phpunit-guzzle';
+		}
+	}
 }
