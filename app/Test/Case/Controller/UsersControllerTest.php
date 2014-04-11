@@ -17,7 +17,7 @@ class UsersControllerTest extends ControllerTestCase
 	public function testLogin()
 	{
 		$data = array(
-				'email' => '1st@example.com'
+				'email' => '1st@example.com',
 				'password' => '123456'
 		);
 		$request = $client->post('/action.php', null, $data);
