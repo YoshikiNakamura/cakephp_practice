@@ -1,11 +1,9 @@
 <?php
 /**
  * UserFixture
- *
  */
 class UserFixture extends CakeTestFixture
 {
-
 	/**
 	 * Fields
 	 */

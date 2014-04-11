@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+use Guzzle\Http\Client as GuzzleClient;
+
 /**
  *
  */
@@ -7,6 +9,21 @@ class UsersControllerTest extends ControllerTestCase
 {
 	public $fixtures = array('app.user');
 
+	public function setUp()
+	{
+		$client = new GuzzleClient('localhost');
+	}
+
+	public function testLogin()
+	{
+		$data = array(
+				'email' => '1st@example.com'
+				'password' => '123456'
+		);
+		$request = $client->post('/action.php', null, $data);
+		$response = $request->send();
+	}
+/*
 	public function testIndex()
 	{
 		$result = $this->testAction('/users/index', array('method'=>'get', 'return'=>'vars'));
@@ -45,13 +62,6 @@ class UsersControllerTest extends ControllerTestCase
 		$this->assertEqual($result['User']['email'], 'sample3@example.com');
 	}
 
-	public function testAddByGet()
-	{
-		$this->testAction('/users/add', array('method'=>'get', 'return'=>'vars'));
-		$result = $this->controller->User->find('count');
-		$this->assertEqual($result, 2);
-	}
-
 	public function testEdit()
 	{
 		$data = array(
@@ -70,4 +80,5 @@ class UsersControllerTest extends ControllerTestCase
 		$result = $this->controller->User->find('count');
 		$this->assertEqual($result, 1);
 	}
+*/
 }

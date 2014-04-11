@@ -1,4 +1,6 @@
 <?php
+App::uses('AppModel', 'Model');
+
 class UsersController extends AppController
 {
 	/**
@@ -9,7 +11,40 @@ class UsersController extends AppController
 	public function beforeFilter()
 	{
 		parent::beforeFilter();
-		//$this->Auth->allow('index');
+		$this->Auth->allow('login', 'add', 'index');
+	}
+
+	/**
+	 * login page
+	 * when the user has logined, redirect user's mypage
+	 */
+	public function login()
+	{
+		$user = $this->Auth->user();
+		if($user)
+		{
+			return $this->redirect(array('controller'=>'users', 'action'=>'view', $user['id']));
+		}
+		if ($this->request->is('post'))
+		{
+			if ($this->Auth->login())
+			{
+				return $this->redirect($this->Auth->redirect());
+			}
+			else
+			{
+				$this->Session->setFlash(__('Invalid username or password, try again'));
+			}
+		}
+	}
+
+	/**
+	 * logout
+	 * this action just do only logout and redirect
+	 */
+	public function logout()
+	{
+		return $this->redirect($this->Auth->logout());
 	}
 
 	/**
@@ -27,6 +62,10 @@ class UsersController extends AppController
 	public function view($id = null)
 	{
 		$user = $this->User->find('first', array('conditions'=>array('User.id'=>$id)));
+		if(!$user)
+		{
+			throw new NotFoundException();
+		}
 		$this->set('user', $user);
 	}
 
@@ -37,9 +76,9 @@ class UsersController extends AppController
 	{
 		if($this->request->is('post'))
 		{
-			$this->User->create();
 			try
 			{
+				$this->User->create();
 				$this->User->save($this->request->data);
 				return $this->redirect(array('action' => 'index'));
 			}
@@ -50,8 +89,17 @@ class UsersController extends AppController
 		}
 	}
 
+	/**
+	 * edit existing user
+	 */
 	public function edit()
 	{
+		$authedUser = $this->Auth->user();
+		$user = $this->User->find('first', array('conditions'=>array('User.id'=>$authedUser['id'])));
+		if(!$user)
+		{
+			throw new BadRequestException();
+		}
 		if($this->request->is('put'))
 		{
 			try
@@ -64,8 +112,14 @@ class UsersController extends AppController
 				$e->getMessage();
 			}
 		}
+		if(!$this->request->data)
+		{
+			$user['User']['password'] = '';
+			$this->request->data = $user;
+		}
 	}
 
+	/*
 	public function delete($id = null)
 	{
 		if($this->request->is('delete'))
@@ -81,4 +135,5 @@ class UsersController extends AppController
 			}
 		}
 	}
+	*/
 }
