@@ -1,21 +1,20 @@
 <?php
-
-//MAMP用
-if ($_SERVER['HTTP_HOST'] === 'localhost') {
-	define('RDS_HOSTNAME', 'localhost');
-	define('RDS_USERNAME', 'root');
-	define('RDS_PASSWORD', 'root');
-	define('RDS_DB_NAME', 'cakephp-practice');
-}
-
 //AWS用
-if (!defined('RDS_HOSTNAME')) {
+if(array_key_exists('RDS_HOSTNAME', $_SERVER))
+{
 	define('RDS_HOSTNAME', $_SERVER['RDS_HOSTNAME']);
 	define('RDS_USERNAME', $_SERVER['RDS_USERNAME']);
 	define('RDS_PASSWORD', $_SERVER['RDS_PASSWORD']);
 	define('RDS_DB_NAME', $_SERVER['RDS_DB_NAME']);
 }
-
+//MAMP用
+else
+{
+	define('RDS_HOSTNAME', 'localhost');
+	define('RDS_USERNAME', 'root');
+	define('RDS_PASSWORD', 'root');
+	define('RDS_DB_NAME', 'cakephp-practice');
+}
 class DATABASE_CONFIG {
 
 	public $default = array(
