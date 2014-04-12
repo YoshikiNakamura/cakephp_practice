@@ -1,6 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
-App::uses(‘autoload’,'Vendor’);
+App::uses('autoload', 'Vendor');
 use Guzzle\Http\Client as GuzzleClient;
 
 /**
